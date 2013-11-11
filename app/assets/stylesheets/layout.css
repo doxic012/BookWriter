@@ -1,0 +1,18 @@
+div#layout_container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+div#top {
+    text-align: right;
+}
+
+div#left {
+    float: left;
+    width: 250px;
+}
+
+div#content {
+    margin-left: 250px;
+    padding-left: 10px;
+}

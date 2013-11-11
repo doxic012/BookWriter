@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>BookWriter</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="layout_container">
+
+  <div id="top">
+
+    <% if user_signed_in? %>
+        <%= link_to I18n.t('views.layout.home'), books_path %> |
+        <%= "#{I18n.t('views.layout.account')}: #{current_user.username}" %> |
+        <%= link_to I18n.t('views.layout.my_account'), edit_user_registration_path %> |
+        <%= link_to I18n.t('views.layout.logout'), destroy_user_session_path, method: :delete %>
+    <% end %>
+
+  </div>
+
+  <div id="left">
+    <%= yield :left %>
+  </div>
+
+  <div id="content">
+
+    <% if flash[:notice] %>
+        <p id="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+        <p id="error"><%= flash[:error] %></p>
+    <% end %>
+
+    <%= yield %>
+
+  </div>
+
+</div>
+
+</body>
+</html>

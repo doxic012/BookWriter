@@ -1,0 +1,21 @@
+# ruby encoding: utf-8
+
+de:
+  views:
+    show: Anzeigen
+    edit: Editieren
+    destroy: Löschen
+    are_you_sure: Sind Sie sicher?
+    back: Zurück
+    edit: Editieren
+    user:
+      index:
+        title: Benutzerliste
+        new: Neuer Benutzer
+      edit:
+        title: Benutzer editieren
+      new:
+        title: Neuer Benutzer
+      flash_messages:
+        book_was_successfully_created: 'Der Benutzer wurde erfolgreich angelegt.'
+        book_was_successfully_updated: 'Der Benutzer wurde erfolgreich aktualisiert.'

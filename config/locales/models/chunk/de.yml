@@ -1,0 +1,14 @@
+# ruby encoding: utf-8
+
+de:
+  activerecord:
+    models:
+      chunk: 'Textabschnitt'
+    attributes:
+      chunk:
+        title: 'Titel'
+        section: 'Abschnitt'
+        version: 'Version'
+        user: 'Autor'
+        content: 'Inhalt'
+

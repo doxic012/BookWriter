@@ -1,0 +1,26 @@
+<h1><%= @chunk.title %></h1>
+
+<br/>
+
+<p>
+  <b><%= Chunk.human_attribute_name(:section) %>:</b>
+  <%= @chunk.section %>
+</p>
+
+<p>
+  <b><%= Chunk.human_attribute_name(:version) %>:</b>
+  <%= @chunk.versions.last.id unless @chunk.versions == nil %>
+</p>
+
+<p>
+  <b><%= Chunk.human_attribute_name(:user) %>:</b>
+  <%= @chunk.username %>
+</p>
+
+<br/>
+
+<%= raw @chunk.content %>
+
+<br/>
+
+<%= button_to I18n.t('views.back'), @book, method: :get %>

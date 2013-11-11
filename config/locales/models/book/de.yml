@@ -1,0 +1,15 @@
+# ruby encoding: utf-8
+
+de:
+  activerecord:
+    models:
+      book: 'Buch'
+    attributes:
+      book:
+        title: 'Titel'
+        edition: 'Auflage'
+        published: 'Veröffentlichungsdatum'
+        genre: 'Genre'
+        abstract: 'Zusammenfassung'
+        tags: 'Tags'
+        users: 'Autoren'

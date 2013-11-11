@@ -1,0 +1,28 @@
+# ruby encoding: utf-8
+
+de:
+  views:
+    show: Anzeigen
+    edit: Editieren
+    destroy: Löschen
+    are_you_sure: Sind Sie sicher?
+    back: Zurück
+    edit: Editieren
+    chunk:
+      index:
+        title: Textabschnitte
+        new: Neuer Textabschnitt
+        empty: Keine Textabschnitte vorhanden.
+      edit:
+        title: Textabschnitt editieren
+      new:
+        title: Neuer Textabschnitt
+      flash_messages:
+        book_was_successfully_created: 'Der Textabschnitt wurde erfolgreich angelegt.'
+        book_was_successfully_updated: 'Der Textabschnitt wurde erfolgreich aktualisiert.'
+      messages:
+        merge_changes: 'Der editierte Textabschnitt wurde zwischenzeitlich von einem anderen Benutzer verändert. Bitte führen Sie die Änderungen zusammen!'
+        was_changed: 'wurde geändert.'
+        was_changed_to: 'wurde geändert auf'
+        content_other: 'INHALT DES ANDEREN BENUTZERS'
+        content_own: 'IHR INHALT'

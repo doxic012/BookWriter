@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>BookWriter PDF-Export</title>
+  <%= wicked_pdf_stylesheet_link_tag "print", :media => "all" %>
+</head>
+<body>
+
+<div id="content">
+  <%= yield %>
+</div>
+
+</body>
+</html>

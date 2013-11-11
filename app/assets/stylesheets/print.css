@@ -1,0 +1,18 @@
+div.cover {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 250px;
+    page-break-after: always;
+}
+
+div.chapter {
+    page-break-after: always;
+}
+
+p.title {
+    font-size: 42pt;
+}
+
+p.authors {
+    font-size: 20pt;
+}

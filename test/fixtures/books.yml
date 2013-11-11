@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+rails_tests:
+  title: Unit-Tests in Rails
+  edition: 1
+  published: 2013-05-11
+  genre: Fachliteratur
+  abstract: Unit-Tests können in Rails beispielsweise mit Test::Unit erfolgen. Dieses Buch zeigt, wie es geht.
+  tags: Rails, Tests, Test::Unit, TDD
+
+javascript:
+  title: JavaScript für Fortgeschrittene
+  edition: 3
+  genre: Fachliteratur
+  abstract: In diesem Buch lernen Sie fortgeschrittene Techniken zur JavaScript-Programmierung kennen.
+  tags: JavaScript, AJAX, JSON, JSONP, jQuery

@@ -1,0 +1,16 @@
+# ruby encoding: utf-8
+
+de:
+  activerecord:
+    models:
+      user: 'Benutzer'
+    attributes:
+      user:
+        first_name: 'Vorname'
+        last_name: 'Nachname'
+        username: 'Benutzerkennung'
+        login: 'Benutzerkennung oder eMail-Adresse'
+        password: 'Passwort'
+        password_confirmation: 'Passwort (Wiederholung)'
+        current_password: 'Aktuelles Passwort'
+        email: 'eMail-Adresse'

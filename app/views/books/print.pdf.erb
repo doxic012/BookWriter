@@ -1,0 +1,28 @@
+<div class="cover">
+  <p class="title"><%= @book.title %></p>
+
+  <p class="authors"><%= @book.users_list_real_names %></p>
+
+  <br/><br/>
+
+  <p><%= "#{@book.edition}. #{Book.human_attribute_name(:edition)}" %></p>
+
+  <% if @book.published? %>
+      <p><%= "#{I18n.t('views.book.export.published_on')} #{@book.published.to_s}" %></p>
+  <% end %>
+</div>
+
+<div class="chapter">
+  <h1><%= Book.human_attribute_name(:abstract) %></h1>
+
+  <p><%= raw @book.abstract %></p>
+</div>
+
+<% if @book.has_chunks? %>
+    <% @book.chunks.each do |chunk| %>
+        <div class="chapter">
+          <h1><%= chunk.title %></h1>
+          <%= raw chunk.content %>
+        </div>
+    <% end %>
+<% end %>

@@ -1,0 +1,78 @@
+<h1><%= @book.title %></h1>
+
+<p>
+  <b><%= Book.human_attribute_name(:edition) %>:</b>
+  <%= @book.edition %>
+</p>
+
+<% if @book.published? %>
+    <p>
+      <b><%= Book.human_attribute_name(:published) %>:</b>
+      <%= @book.published %>
+    </p>
+<% end %>
+
+<p>
+  <b><%= Book.human_attribute_name(:genre) %>:</b>
+  <%= @book.genre %>
+</p>
+
+<p>
+  <b><%= Book.human_attribute_name(:tags) %>:</b>
+  <%= @book.tags %>
+</p>
+
+<p>
+  <b><%= Book.human_attribute_name(:users) %>:</b>
+  <%= @book.users_list %>
+</p>
+
+<div class="horizontal">
+  <% unless @book.closed? %>
+      <%= button_to I18n.t('views.edit'), edit_book_path(@book), method: :get %>
+      <%= button_to I18n.t('views.book.close.close_book'), close_book_path(@book), data: {confirm: I18n.t('views.book.close.sure')} %>
+  <% end %>
+  <%= button_to I18n.t('views.book.new_edition'), new_edition_book_path(@book), method: :get %>
+  <%= button_to I18n.t('views.book.export.pdf'), print_book_path(@book, :format => 'pdf'), method: :get %>
+  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %>
+</div>
+
+<br/><br/><br/>
+
+<h2><%= t 'views.chunk.index.title' %></h2>
+<% if @book.has_chunks? %>
+    <table>
+      <tr>
+        <th><%= Chunk.human_attribute_name(:title) %></th>
+        <th><%= Chunk.human_attribute_name(:section) %></th>
+        <th><%= Chunk.human_attribute_name(:user) %></th>
+        <th><%= Chunk.human_attribute_name(:version) %></th>
+        <% unless @book.closed? %>
+            <th></th>
+        <% end %>
+      </tr>
+      <% @book.chunks.each do |chunk| %>
+          <tr>
+            <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
+            <td><%= chunk.section %></td>
+            <td><%= chunk.username %></td>
+            <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
+            <% unless @book.closed? %>
+                <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
+            <% end %>
+          </tr>
+      <% end %>
+    </table>
+<% else %>
+    <p><%= I18n.t('views.chunk.index.empty') %></p>
+<% end %>
+
+<br/>
+
+<% unless @book.closed? %>
+    <%= button_to I18n.t('views.chunk.index.new'), new_book_chunk_path(@book), method: :get %>
+<% end %>
+
+<br/><br/>
+
+<%= button_to I18n.t('views.back'), books_path, method: :get %>

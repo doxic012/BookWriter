@@ -1,0 +1,52 @@
+<%= form_for(@book) do |f| %>
+    <% if @book.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= t 'activerecord.errors.template.header', :model => Book.model_name.human, :count => @book.errors.count %></h2>
+
+          <ul>
+            <% @book.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <br/>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :edition %>
+      <br/>
+      <%= f.text_field :edition %>
+    </div>
+    <div class="field">
+      <%= f.label :genre %>
+      <br/>
+      <%= f.text_field :genre %>
+    </div>
+    <div class="field">
+      <%= f.label :abstract %>
+      <br/>
+      <%= f.cktext_area :abstract %>
+    </div>
+    <div class="field">
+      <%= f.label :tags %>
+      <br/>
+      <%= f.text_field :tags %>
+    </div>
+    <div class="field">
+      <%= f.label :users %>
+      <br/>
+      <% @users.each do |user| %>
+          <div>
+            <%= check_box_tag "book[user_ids][]", user.id, @book.users.include?(user) %>
+            <%= user.email %>
+          </div>
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
