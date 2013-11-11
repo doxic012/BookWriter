@@ -41,7 +41,7 @@
       <br/>
       <% @users.each do |user| %>
           <div>
-            <%= check_box_tag "book[user_ids][]", user.id, @book.users.include?(user) %>
+            <%= check_box_tag "book[user_ids][]", user.id, is_current_user?(user) %>
             <%= user.email %>
           </div>
       <% end %>
