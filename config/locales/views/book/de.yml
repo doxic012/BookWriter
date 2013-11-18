@@ -8,9 +8,10 @@ de:
     are_you_sure: Sind Sie sicher?
     back: Zurück
     edit: Editieren
+    cancel: Abbrechen
     book:
       export:
-        pdf: PDF-Export
+        pdf: PDF-Exportieren
         published_on: Veröffentlicht am
       close: 
         close_book: Abschließen
