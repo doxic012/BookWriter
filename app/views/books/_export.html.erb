@@ -4,13 +4,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">PDF Exportieren: <% @book.title %></h4>
+        <h4 class="modal-title" id="myModalLabel">Als PDF Exportieren: <%= book.title %></h4>
       </div>
       <div class="modal-body">
+
       </div>
       <div class="modal-footer">
         <%= button_to  I18n.t('views.cancel'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>
-        <%= button_to I18n.t('views.book.export.pdf'), print_book_path(@book, :format => 'pdf'), :'class' => 'btn', method: :get %>
+        <%= button_to I18n.t('views.book.export.pdf'), print_book_path(book, :format => 'pdf'), :'class' => 'btn', method: :get %>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

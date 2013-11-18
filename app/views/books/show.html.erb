@@ -77,4 +77,4 @@
 
 <%= button_to I18n.t('views.back'), books_path, method: :get %>
 
-<%= render 'export' %>
+<%= render 'export', locale = {book: @book } %>
