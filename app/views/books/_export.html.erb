@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="pdfExport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="pdfExport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,11 +7,102 @@
         <h4 class="modal-title" id="myModalLabel">Als PDF Exportieren: <%= book.title %></h4>
       </div>
       <div class="modal-body">
+        <label class="checkbox">
+          <input type="checkbox" value=""> Alle auswählen
+        </label>
+
+        <select multiple class="form-control">
+          <option>2.1 Abschnitt</option>
+          <option>2.2 Abschnitt</option>
+        </select>
+
+        <label class="checkbox">
+          <input type="checkbox" value=""> Inhaltsverzeichnis einfügen
+        </label>
+
+        <h4>Seitenränder</h4>
+        <div class="row">
+          <div class="span2">
+            <div class="input-prepend input-append">
+              <span class="add-on">Oben:</span>
+              <input class="input-mini" id="appendedPrependedInput" type="text">
+              <span class="add-on">cm</span>
+            </div>
+          </div>
+          <div class="span2">
+            <div class="input-prepend input-append">
+              <span class="add-on">Unten:</span>
+              <input class="input-mini" id="appendedPrependedInput" type="text">
+              <span class="add-on">cm</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span2">
+            <div class="input-prepend input-append">
+              <span class="add-on">Oben:</span>
+              <input class="input-mini" id="appendedPrependedInput" type="text">
+              <span class="add-on">cm</span>
+            </div>
+          </div>
+          <div class="span2">
+            <div class="input-prepend input-append">
+              <span class="add-on">Oben:</span>
+              <input class="input-mini" id="appendedPrependedInput" type="text">
+              <span class="add-on">cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-prepend">
+          <div class="add-on">
+            <label class="checkbox">
+              <input type="checkbox" value=""> Kopfzeile
+            </label>
+          </div>
+          <input class="input-large" id="appendedPrependedInput" type="text">
+        </div>
+        <div class="input-prepend">
+          <div class="add-on">
+            <label class="checkbox">
+              <input type="checkbox" value=""> Fußzeile
+            </label>
+          </div>
+          <input class="input-large" id="appendedPrependedInput" type="text">
+        </div>        <div class="input-prepend">
+          <div class="add-on">
+            <label class="checkbox">
+              <input type="checkbox" value=""> Fußzeile
+            </label>
+          </div>
+          <input class="input-large" id="appendedPrependedInput" type="text">
+        </div>        <div class="input-prepend">
+          <div class="add-on">
+            <label class="checkbox">
+              <input type="checkbox" value=""> Fußzeile
+            </label>
+          </div>
+          <input class="input-large" id="appendedPrependedInput" type="text">
+        </div>        <div class="input-prepend">
+          <div class="add-on">
+            <label class="checkbox">
+              <input type="checkbox" value=""> Fußzeile
+            </label>
+          </div>
+          <input class="input-large" id="appendedPrependedInput" type="text">
+        </div>        <div class="input-prepend">
+          <div class="add-on">
+            <label class="checkbox">
+              <input type="checkbox" value=""> Fußzeile
+            </label>
+          </div>
+          <input class="input-large" id="appendedPrependedInput" type="text">
+        </div>
 
       </div>
       <div class="modal-footer">
-        <%= button_to  I18n.t('views.cancel'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>
         <%= button_to I18n.t('views.book.export.pdf'), print_book_path(book, :format => 'pdf'), :'class' => 'btn', method: :get %>
+        <%= button_to I18n.t('views.cancel'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

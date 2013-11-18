@@ -10,3 +10,14 @@
     display: inline-block;
     margin: 0;
 }
+
+.modal.fade.in {
+    top: 2%;
+}
+
+.modal-body {
+    overflow: inherit;
+}
+#pdfExport {
+    overflow-y: auto;
+}
