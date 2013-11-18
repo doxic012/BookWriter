@@ -16,8 +16,17 @@
 }
 
 .modal-body {
-    overflow: inherit;
+    overflow: visible;
+    max-height: 100%;
 }
+
 #pdfExport {
+    max-height: 95%;
+    min-height: 400px;
     overflow-y: auto;
+
+}
+
+.fade-height {
+    transition: height 250ms ease-in;
 }

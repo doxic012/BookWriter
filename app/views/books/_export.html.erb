@@ -11,7 +11,7 @@
           <input type="checkbox" value=""> Alle auswählen
         </label>
 
-        <select multiple class="form-control">
+        <select id="chunk-select" multiple class="form-control" >
           <option>2.1 Abschnitt</option>
           <option>2.2 Abschnitt</option>
         </select>
@@ -21,89 +21,62 @@
         </label>
 
         <h4>Seitenränder</h4>
-        <div class="row">
-          <div class="span2">
-            <div class="input-prepend input-append">
-              <span class="add-on">Oben:</span>
-              <input class="input-mini" id="appendedPrependedInput" type="text">
-              <span class="add-on">cm</span>
-            </div>
+
+        <div class="row-fluid">
+          <div class="input-prepend input-append">
+            <span class="add-on">Oben:</span>
+            <input class="input-mini" id="appendedPrependedInput" type="text">
+            <span class="add-on">cm</span>
           </div>
-          <div class="span2">
-            <div class="input-prepend input-append">
-              <span class="add-on">Unten:</span>
-              <input class="input-mini" id="appendedPrependedInput" type="text">
-              <span class="add-on">cm</span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span2">
-            <div class="input-prepend input-append">
-              <span class="add-on">Oben:</span>
-              <input class="input-mini" id="appendedPrependedInput" type="text">
-              <span class="add-on">cm</span>
-            </div>
-          </div>
-          <div class="span2">
-            <div class="input-prepend input-append">
-              <span class="add-on">Oben:</span>
-              <input class="input-mini" id="appendedPrependedInput" type="text">
-              <span class="add-on">cm</span>
-            </div>
+          <div class="input-prepend input-append">
+            <span class="add-on">Unten:</span>
+            <input class="input-mini" id="appendedPrependedInput" type="text">
+            <span class="add-on">cm</span>
           </div>
         </div>
 
-        <div class="input-prepend">
-          <div class="add-on">
-            <label class="checkbox">
-              <input type="checkbox" value=""> Kopfzeile
-            </label>
+        <div class="row-fluid">
+          <div class="input-prepend input-append">
+            <span class="add-on">Rechts:</span>
+            <input class="input-mini" id="appendedPrependedInput" type="text">
+            <span class="add-on">cm</span>
           </div>
-          <input class="input-large" id="appendedPrependedInput" type="text">
-        </div>
-        <div class="input-prepend">
-          <div class="add-on">
-            <label class="checkbox">
-              <input type="checkbox" value=""> Fußzeile
-            </label>
-          </div>
-          <input class="input-large" id="appendedPrependedInput" type="text">
-        </div>        <div class="input-prepend">
-          <div class="add-on">
-            <label class="checkbox">
-              <input type="checkbox" value=""> Fußzeile
-            </label>
-          </div>
-          <input class="input-large" id="appendedPrependedInput" type="text">
-        </div>        <div class="input-prepend">
-          <div class="add-on">
-            <label class="checkbox">
-              <input type="checkbox" value=""> Fußzeile
-            </label>
-          </div>
-          <input class="input-large" id="appendedPrependedInput" type="text">
-        </div>        <div class="input-prepend">
-          <div class="add-on">
-            <label class="checkbox">
-              <input type="checkbox" value=""> Fußzeile
-            </label>
-          </div>
-          <input class="input-large" id="appendedPrependedInput" type="text">
-        </div>        <div class="input-prepend">
-          <div class="add-on">
-            <label class="checkbox">
-              <input type="checkbox" value=""> Fußzeile
-            </label>
-          </div>
-          <input class="input-large" id="appendedPrependedInput" type="text">
-        </div>
 
+          <div class="input-prepend input-append">
+            <span class="add-on">Links:</span>
+            <input class="input-mini" id="appendedPrependedInput" type="text">
+            <span class="add-on">cm</span>
+          </div>
+        </div>
+        <div class="row-fluid">
+
+          <div class="input-prepend">
+            <div class="add-on">
+              <label class="checkbox">
+                <input type="checkbox" value=""> Kopfzeile
+              </label>
+            </div>
+            <input class="input-large" id="appendedPrependedInput" type="text">
+          </div>
+        </div>
+        <div class="row-fluid">
+
+          <div class="input-prepend">
+            <div class="add-on">
+              <label class="checkbox">
+                <input type="checkbox" value=""> Fußzeile
+              </label>
+            </div>
+            <input class="input-large" id="appendedPrependedInput" type="text">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <%= button_to I18n.t('views.book.export.pdf'), print_book_path(book, :format => 'pdf'), :'class' => 'btn', method: :get %>
         <%= button_to I18n.t('views.cancel'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div><!-- /.modal -->
