@@ -1,0 +1,17 @@
+<%= form_for(@pdf_export_setting) do |f| %>
+  <% if @pdf_export_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pdf_export_setting.errors.count, "error") %> prohibited this pdf_export_setting from being saved:</h2>
+
+      <ul>
+      <% @pdf_export_setting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

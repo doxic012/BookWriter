@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :books
   has_many :chunks
+  has_one :pdf_export_setting
 
   validates_presence_of :first_name, :last_name
   validates :username, :uniqueness => {:case_sensitive => false}

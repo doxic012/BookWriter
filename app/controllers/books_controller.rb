@@ -19,6 +19,13 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
+    @exportSettings = current_user.pdf_export_setting
+
+    if (@exportSettings == nil)
+        @exportSettings ||= PdfExportSetting.create!
+        current_user.pdf_export_setting = @exportSettings
+    end
+
 
     respond_to do |format|
       format.html { render_check_template }

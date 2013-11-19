@@ -1,5 +1,8 @@
 BookWriter::Application.routes.draw do
 
+  resources :pdf_export_settings
+
+
   mount Ckeditor::Engine => '/ckeditor'
 
   # Startseite der Applikation
