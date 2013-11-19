@@ -1,3 +1,14 @@
+<%  ## Partial, that renders the pdf-export settings subwindow.
+    #
+    # Expected Locale Params:
+    #
+    # books     the current book object to print
+    #
+    ##
+
+
+%>
+
 <!-- Modal -->
 <div class="modal fade" id="pdfExport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
   <div class="modal-dialog">
@@ -12,8 +23,9 @@
         </label>
 
         <select id="chunk-select" multiple class="form-control" >
-          <option>2.1 Abschnitt</option>
-          <option>2.2 Abschnitt</option>
+          <% book.chunks.each do |chunk| %>
+              <option><%= chunk.section %> - <%= chunk.title %></option>
+          <% end %>
         </select>
 
         <label class="checkbox">
