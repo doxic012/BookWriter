@@ -46,13 +46,15 @@
             <div class="row-fluid">
               <div class="input-prepend input-append">
                 <span class="add-on">Oben:</span>
-                <input class="input-mini" id="appendedPrependedInput" type="text">
+                <%= f.text_field :marginTop, :id => "appendedPrependedInput", :class => "input-mini" %>
+                <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                 <span class="add-on">cm</span>
               </div>
 
               <div class="input-prepend input-append">
                 <span class="add-on">Unten:</span>
-                <input class="input-mini" id="appendedPrependedInput" type="text">
+                <%= f.text_field :marginBottom, :id => "appendedPrependedInput", :class => "input-mini" %>
+                <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                 <span class="add-on">cm</span>
               </div>
             </div>
@@ -60,13 +62,15 @@
             <div class="row-fluid">
               <div class="input-prepend input-append">
                 <span class="add-on">Rechts:</span>
-                <input class="input-mini" id="appendedPrependedInput" type="text">
+                <%= f.text_field :marginRight, :id => "appendedPrependedInput", :class => "input-mini" %>
+                <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                 <span class="add-on">cm</span>
               </div>
 
               <div class="input-prepend input-append">
                 <span class="add-on">Links:</span>
-                <input class="input-mini" id="appendedPrependedInput" type="text">
+                <%= f.text_field :marginLeft, :id => "appendedPrependedInput", :class => "input-mini" %>
+                <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                 <span class="add-on">cm</span>
               </div>
             </div>
@@ -78,10 +82,12 @@
               <div class="input-prepend">
                 <div class="add-on">
                   <label class="checkbox">
-                    <input type="checkbox" value=""> Kopfzeile
+                    <%= f.check_box :insertHead %> Kopfzeile
+                    <!--<input type="checkbox" value=""> Kopfzeile-->
                   </label>
                 </div>
-                <input class="input-large" id="appendedPrependedInput" type="text">
+                <%= f.text_field :head, :id => "appendedPrependedInput", :class => "input-large" %>
+                <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
             <div class="row-fluid">
@@ -89,10 +95,12 @@
               <div class="input-prepend">
                 <div class="add-on">
                   <label class="checkbox">
-                    <input type="checkbox" value=""> Fußzeile
+                    <%= f.check_box :insertFoot %> Kopfzeile
+                    <!--<input type="checkbox" value=""> Fußzeile-->
                   </label>
                 </div>
-                <input class="input-large" id="appendedPrependedInput" type="text">
+                <%= f.text_field :foot, :id => "appendedPrependedInput", :class => "input-large" %>
+                <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
           </div>
