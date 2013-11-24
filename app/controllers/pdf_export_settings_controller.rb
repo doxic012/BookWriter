@@ -16,8 +16,6 @@ class PdfExportSettingsController < ApplicationController
       end
     end
   end
-
-
 =begin
   # GET /pdf_export_settings
   # GET /pdf_export_settings.json
