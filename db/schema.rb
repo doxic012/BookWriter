@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119145320) do
+ActiveRecord::Schema.define(:version => 20131125091343) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -59,17 +59,17 @@ ActiveRecord::Schema.define(:version => 20131119145320) do
 
   create_table "pdf_export_settings", :force => true do |t|
     t.boolean  "tableOfContent"
-    t.float    "marginTop"
-    t.float    "marginBottom"
-    t.float    "marginRight"
-    t.float    "marginLeft"
+    t.float    "marginTop",      :default => 2.0
+    t.float    "marginBottom",   :default => 2.0
+    t.float    "marginRight",    :default => 2.0
+    t.float    "marginLeft",     :default => 2.0
     t.boolean  "insertHead"
     t.boolean  "insertFoot"
     t.text     "head"
     t.text     "foot"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "pdf_export_settings", ["user_id"], :name => "index_pdf_export_settings_on_user_id"

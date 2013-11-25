@@ -14,6 +14,8 @@ class CreatePdfExportSettings < ActiveRecord::Migration
 
       t.timestamps
     end
+
+
     add_index :pdf_export_settings, :user_id
   end
 end

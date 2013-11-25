@@ -22,8 +22,8 @@ class BooksController < ApplicationController
     @exportSettings = current_user.pdf_export_setting
 
     if (@exportSettings == nil)
-      @exportSettings = PdfExportSetting.create([:insertFoot=> true, :insertHead => true, :tableOfContent => true, :foot => 10, :head => 10, :marginLeft => 5, :marginRight => 5, :marginTop => 5, :marginBottom => 5])
-      #current_user.pdf_export_setting = @exportSettings
+      @exportSettings = PdfExportSetting.create!
+      current_user.pdf_export_setting = @exportSettings
       # TODO: Default werte in PdfExportSetting object umwandeln (?)
     end
 
