@@ -2,13 +2,27 @@ class PdfExportSettingsController < ApplicationController
   # PUT /pdf_export_settings/1
   # PUT /pdf_export_settings/1.json
   def update
+    puts '-------------------'
+    puts '-------------------'
+    puts 'oink'
+    puts '-------------------'
+    puts '-------------------'
+
     @pdf_export_setting = PdfExportSetting.find(params[:id])
 
     currentBook = Book.find(params[:book_id])
 
     respond_to do |format|
       if @pdf_export_setting.update_attributes(params[:pdf_export_setting])
-        format.html { redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf export setting was successfully updated.' }
+        format.html {
+          if (params[:commit] == I18n.t('views.close_save'))
+            redirect_to currentBook
+
+            return
+          end
+
+          redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf export setting was successfully updated.'
+        }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -10,6 +10,7 @@ de:
     edit: Editieren
     cancel: Abbrechen
     close: Schließen
+    close_save: Speichern und Schließen
     book:
       export:
         pdf: PDF-Exportieren

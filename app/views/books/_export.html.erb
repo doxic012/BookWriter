@@ -118,13 +118,18 @@
 
           <div class="modal-footer">
             <%= f.submit 'PDF exportieren', :class => 'btn'%>
+            <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
+                #TODO Why ^ ?
+
+                f.submit I18n.t('views.close_save'), :class => 'btn'
+            %>
       <% end %>
 
-      <!--<%= button_to I18n.t('views.book.export.pdf'), print_book_path(book, :format => 'pdf'), :'class' => 'btn', method: :get %>-->
-      <%= button_to I18n.t('views.close'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>
+      <!--<%#button_to I18n.t('views.close'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>-->
       </div>
     </div>
     <!-- /.modal-content -->
+
   </div>
   <!-- /.modal-dialog -->
 </div><!-- /.modal -->
