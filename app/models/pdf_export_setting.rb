@@ -1,6 +1,6 @@
 class PdfExportSetting < ActiveRecord::Base
   attr_accessible :foot, :head, :insertFoot, :insertHead, :marginBottom, :marginLeft, :marginRight, :marginTop, :tableOfContent
-  belongs_to :user
+  has_one :authorship
 
   #TODO: Sinnvolle maximal Ränder definieren
   validates :marginLeft, :marginRight, :numericality => {:greater_than => 0.5, :less_than => 10.0}
