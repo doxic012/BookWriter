@@ -10,6 +10,7 @@ class Chunk < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :book
+  has_and_belongs_to_many :pdf_export_settings
 
   before_validation { self.position ||= book.max_chunk_position + 1 }
 

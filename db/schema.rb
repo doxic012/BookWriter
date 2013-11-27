@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125220555) do
+ActiveRecord::Schema.define(:version => 20131127084341) do
 
   create_table "authorships", :force => true do |t|
     t.integer "book_id"
@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(:version => 20131125220555) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "position"
+  end
+
+  create_table "chunks_pdf_export_settings", :id => false, :force => true do |t|
+    t.integer "chunk_id"
+    t.integer "pdf_export_setting_id"
   end
 
   create_table "ckeditor_assets", :force => true do |t|

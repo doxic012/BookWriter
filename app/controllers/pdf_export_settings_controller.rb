@@ -2,18 +2,17 @@ class PdfExportSettingsController < ApplicationController
   # PUT /pdf_export_settings/1
   # PUT /pdf_export_settings/1.json
   def update
-    puts '-------------------'
-    puts '-------------------'
-    puts 'oink'
-    puts '-------------------'
-    puts '-------------------'
 
     @pdf_export_setting = PdfExportSetting.find(params[:id])
 
     currentBook = Book.find(params[:book_id])
 
     respond_to do |format|
-      if @pdf_export_setting.update_attributes(params[:pdf_export_setting])
+      #save chunks:
+      saveSuccess= @pdf_export_setting.update_attribute(:chunks, Chunk.find_all_by_id(params[:pdf_export_setting][:chunks]))
+      saveSuccess = saveSuccess || @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks))
+      #save the rest:
+      if saveSuccess
         format.html {
           if (params[:commit] == I18n.t('views.close_save'))
             redirect_to currentBook
@@ -25,6 +24,7 @@ class PdfExportSettingsController < ApplicationController
         }
         format.json { head :no_content }
       else
+        #error while saving
         format.html { render action: "edit" }
         format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
       end

@@ -28,11 +28,24 @@
               <input type="checkbox" value=""> Alle auswählen
             </label>
 
-            <select id="chunk-select" multiple class="form-control" >
-              <% book.chunks.each do |chunk| %>
-                  <option><%= chunk.section %> - <%= chunk.title %></option>
-              <% end %>
-            </select>
+            <%= f.select :chunks,
+                         options_for_select(                                          #All _shown_ option tags:
+                                 book.chunks.map {|c| [c.section + " - " + c.title,   #->text
+                                                  c.id]},                             #->value
+                                 @exportSettings.chunks.collect {|c| c.id}            #All _selected_ options
+                         ),
+                         {:include_blank => false},                            #form-helper options
+                         { :class => 'form-control',    #html options
+                           :multiple => true }
+            #end f.select
+            %>
+
+
+            <!--<select id="chunk-select" multiple class="form-control" >-->
+              <!--<%# book.chunks.each do |chunk| %>-->
+                  <!--<option><%#= chunk.section %> - <%#= chunk.title %></option>-->
+              <!--<%# end %>-->
+            <!--</select>-->
 
 
             <!-- +++++ Table of Content & Margin: +++++ -->
