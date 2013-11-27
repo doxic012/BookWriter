@@ -1,5 +1,5 @@
 class PdfExportSetting < ActiveRecord::Base
-  attr_accessible :chunks, :foot, :head, :insertFoot, :insertHead, :marginBottom, :marginLeft, :marginRight, :marginTop, :tableOfContent
+  attr_accessible :chunks, :foot, :head, :insertFoot, :insertHead, :marginBottom, :marginLeft, :marginRight, :marginTop, :tableOfContent, :allChunks
   has_one :authorship
   has_and_belongs_to_many :chunks
 

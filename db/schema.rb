@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127084341) do
+ActiveRecord::Schema.define(:version => 20131127115831) do
 
   create_table "authorships", :force => true do |t|
     t.integer "book_id"
@@ -73,8 +73,9 @@ ActiveRecord::Schema.define(:version => 20131127084341) do
     t.boolean  "insertFoot"
     t.text     "head"
     t.text     "foot"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "allChunks",      :default => false
   end
 
   create_table "users", :force => true do |t|

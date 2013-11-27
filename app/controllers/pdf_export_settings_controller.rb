@@ -8,12 +8,20 @@ class PdfExportSettingsController < ApplicationController
     currentBook = Book.find(params[:book_id])
 
     respond_to do |format|
+      #chunks have to be saved manually, cause we dont want to save the id-strings from
+      #params, but instead the found chunk-objects for those ids.
+
       #save chunks:
-      saveSuccess= @pdf_export_setting.update_attribute(:chunks, Chunk.find_all_by_id(params[:pdf_export_setting][:chunks]))
-      saveSuccess = saveSuccess || @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks))
+      saveSuccess = true
+
+      saveSuccess = @pdf_export_setting.update_attribute(:chunks, Chunk.find_all_by_id(params[:pdf_export_setting][:chunks]))
+
       #save the rest:
+      saveSuccess = @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks)) || saveSuccess
+
       if saveSuccess
         format.html {
+          #redirect to book (closed modal), if commit-button was "close & save"
           if (params[:commit] == I18n.t('views.close_save'))
             redirect_to currentBook
 
@@ -25,11 +33,12 @@ class PdfExportSettingsController < ApplicationController
         format.json { head :no_content }
       else
         #error while saving
-        format.html { render action: "edit" }
+        format.html { return }
         format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
       end
     end
   end
+
 =begin
   # GET /pdf_export_settings
   # GET /pdf_export_settings.json

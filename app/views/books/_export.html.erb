@@ -25,8 +25,18 @@
 
             <!-- +++++  Chnuks Selection: +++++ -->
             <label class="checkbox">
-              <input type="checkbox" value=""> Alle auswählen
+              <%= f.check_box :allChunks, :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
             </label>
+
+            <% chunkSelectHtmlAttributes = { :class => 'form-control',    #html options
+                 :multiple => true,
+                 :id => :chunks_select
+               }
+
+               if @exportSettings.allChunks?
+                 chunkSelectHtmlAttributes.merge!(:disabled => '')
+               end
+            %>
 
             <%= f.select :chunks,
                          options_for_select(                                          #All _shown_ option tags:
@@ -35,8 +45,7 @@
                                  @exportSettings.chunks.collect {|c| c.id}            #All _selected_ options
                          ),
                          {:include_blank => false},                            #form-helper options
-                         { :class => 'form-control',    #html options
-                           :multiple => true }
+                         chunkSelectHtmlAttributes
             #end f.select
             %>
 
@@ -130,16 +139,15 @@
           <!-- END BODY -->
 
           <div class="modal-footer">
-            <%= f.submit 'PDF exportieren', :class => 'btn'%>
+            <%= f.submit 'PDF exportieren', :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
             <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
                 #TODO Why ^ ?
 
-                f.submit I18n.t('views.close_save'), :class => 'btn'
+                f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"
             %>
+          </div>
       <% end %>
 
-      <!--<%#button_to I18n.t('views.close'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>-->
-      </div>
     </div>
     <!-- /.modal-content -->
 
