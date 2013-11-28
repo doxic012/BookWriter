@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125091343) do
+ActiveRecord::Schema.define(:version => 20131127115831) do
+
+  create_table "authorships", :force => true do |t|
+    t.integer "book_id"
+    t.integer "user_id"
+    t.integer "pdf_export_setting_id"
+  end
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -25,11 +31,6 @@ ActiveRecord::Schema.define(:version => 20131125091343) do
     t.boolean  "closed"
   end
 
-  create_table "books_users", :id => false, :force => true do |t|
-    t.integer "book_id"
-    t.integer "user_id"
-  end
-
   create_table "chunks", :force => true do |t|
     t.string   "title"
     t.string   "section"
@@ -39,6 +40,11 @@ ActiveRecord::Schema.define(:version => 20131125091343) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "position"
+  end
+
+  create_table "chunks_pdf_export_settings", :id => false, :force => true do |t|
+    t.integer "chunk_id"
+    t.integer "pdf_export_setting_id"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -67,12 +73,10 @@ ActiveRecord::Schema.define(:version => 20131125091343) do
     t.boolean  "insertFoot"
     t.text     "head"
     t.text     "foot"
-    t.integer  "user_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "allChunks",      :default => false
   end
-
-  add_index "pdf_export_settings", ["user_id"], :name => "index_pdf_export_settings_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

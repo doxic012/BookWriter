@@ -25,14 +25,36 @@
 
             <!-- +++++  Chnuks Selection: +++++ -->
             <label class="checkbox">
-              <input type="checkbox" value=""> Alle auswählen
+              <%= f.check_box :allChunks, :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
             </label>
 
-            <select id="chunk-select" multiple class="form-control" >
-              <% book.chunks.each do |chunk| %>
-                  <option><%= chunk.section %> - <%= chunk.title %></option>
-              <% end %>
-            </select>
+            <% chunkSelectHtmlAttributes = { :class => 'form-control',    #html options
+                 :multiple => true,
+                 :id => :chunks_select
+               }
+
+               if @exportSettings.allChunks?
+                 chunkSelectHtmlAttributes.merge!(:disabled => '')
+               end
+            %>
+
+            <%= f.select :chunks,
+                         options_for_select(                                          #All _shown_ option tags:
+                                 book.chunks.map {|c| [c.section + " - " + c.title,   #->text
+                                                  c.id]},                             #->value
+                                 @exportSettings.chunks.collect {|c| c.id}            #All _selected_ options
+                         ),
+                         {:include_blank => false},                            #form-helper options
+                         chunkSelectHtmlAttributes
+            #end f.select
+            %>
+
+
+            <!--<select id="chunk-select" multiple class="form-control" >-->
+              <!--<%# book.chunks.each do |chunk| %>-->
+                  <!--<option><%#= chunk.section %> - <%#= chunk.title %></option>-->
+              <!--<%# end %>-->
+            <!--</select>-->
 
 
             <!-- +++++ Table of Content & Margin: +++++ -->
@@ -117,14 +139,18 @@
           <!-- END BODY -->
 
           <div class="modal-footer">
-            <%= f.submit 'PDF exportieren', :class => 'btn'%>
+            <%= f.submit 'PDF exportieren', :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
+            <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
+                #TODO Why ^ ?
+
+                f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"
+            %>
+          </div>
       <% end %>
 
-      <!--<%= button_to I18n.t('views.book.export.pdf'), print_book_path(book, :format => 'pdf'), :'class' => 'btn', method: :get %>-->
-      <%= button_to I18n.t('views.close'), "", :'class' => 'btn', :'data-dismiss' => 'modal', method: :get %>
-      </div>
     </div>
     <!-- /.modal-content -->
+
   </div>
   <!-- /.modal-dialog -->
 </div><!-- /.modal -->

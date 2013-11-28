@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
   attr_accessible :login
   attr_accessor :login
 
-  has_and_belongs_to_many :books
+  #has_and_belongs_to_many :books
+  has_many :authorships
+  has_many :books, :through => :authorships
   has_many :chunks
-  has_one :pdf_export_setting
 
   validates_presence_of :first_name, :last_name
   validates :username, :uniqueness => {:case_sensitive => false}

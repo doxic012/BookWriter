@@ -19,12 +19,35 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
-    @exportSettings = current_user.pdf_export_setting
+    #current_user.authorships.each do |authorship|
+    #  puts "--------------"
+    #  puts "--------------"
+    #  puts "Buch#" + authorship.book.id.to_s
+    #  puts "--------------"
+    #  puts "--------------"
+    #
+    #  if (authorship.book.id == @book.id)
+    #    @exportSettings = authorship.pdf_export_setting
+    #    #break
+    #  end
+    #end
+
+    @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
+
+    @exportSettings = @authorship.pdf_export_setting
 
     if (@exportSettings == nil)
+      puts "authorshipId ist gleich #{@authorship.id}"
+      puts "---------------------"
+      puts "---------------------"
+      puts "oink"
+      puts "---------------------"
+      puts "---------------------"
+
+
       @exportSettings = PdfExportSetting.create!
-      current_user.pdf_export_setting = @exportSettings
-      # TODO: Default werte in PdfExportSetting object umwandeln (?)
+      @authorship.pdf_export_setting = @exportSettings
+      @authorship.save!
     end
 
 
