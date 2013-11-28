@@ -11,7 +11,7 @@
       <p><%= "#{I18n.t('views.book.export.published_on')} #{@book.published.to_s}" %></p>
   <% end %>
 </div>
-
+<% if @exportSettings.insertHead? %> <div ><%= @exportSettings.head %></div> <% end %>
 <div class="chapter">
   <h1><%= Book.human_attribute_name(:abstract) %></h1>
 

@@ -59,7 +59,7 @@ class BooksController < ApplicationController
 
   def print
     @book = Book.find(params[:id])
-
+    @exportSettings = current_user.pdf_export_setting
     respond_to do |format|
       format.pdf do
         render :pdf => @book.title, :layout => 'print'
