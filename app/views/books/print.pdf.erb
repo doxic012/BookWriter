@@ -11,18 +11,26 @@
       <p><%= "#{I18n.t('views.book.export.published_on')} #{@book.published.to_s}" %></p>
   <% end %>
 </div>
-<% if @exportSettings.insertHead? %> <div ><%= @exportSettings.head %></div> <%end %>
+
+<% if @exportSettings.insertHead? %>
+    <div ><%= @exportSettings.head %></div>
+<%end %>
 <div class="chapter">
   <h1><%= Book.human_attribute_name(:abstract) %></h1>
 
   <p><%= raw @book.abstract %></p>
 </div>
 
-<% if @book.has_chunks? %>
-    <% @book.chunks.each do |chunk| %>
+<% if @exportSettings.allChunks?
+     chunkSource = @book
+   else
+     chunkSource = @exportSettings
+   end
+%>
+    <% chunkSource.chunks.each do |chunk| %>
         <div class="chapter">
           <h1><%= chunk.title %></h1>
           <%= raw chunk.content %>
         </div>
     <% end %>
-<% end %>
+<%# end %>
