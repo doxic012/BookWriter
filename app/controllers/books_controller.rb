@@ -37,14 +37,6 @@ class BooksController < ApplicationController
     @exportSettings = @authorship.pdf_export_setting
 
     if (@exportSettings == nil)
-      puts "authorshipId ist gleich #{@authorship.id}"
-      puts "---------------------"
-      puts "---------------------"
-      puts "oink"
-      puts "---------------------"
-      puts "---------------------"
-
-
       @exportSettings = PdfExportSetting.create!
       @authorship.pdf_export_setting = @exportSettings
       @authorship.save!
@@ -59,7 +51,10 @@ class BooksController < ApplicationController
 
   def print
     @book = Book.find(params[:id])
-    @exportSettings = current_user.pdf_export_setting
+
+    @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
+    @exportSettings = @authorship.pdf_export_setting
+
     respond_to do |format|
       format.pdf do
         render :pdf => @book.title, :layout => 'print'
