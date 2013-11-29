@@ -16,3 +16,12 @@ p.title {
 p.authors {
     font-size: 20pt;
 }
+
+table.tableOfContent {
+    width: 100%;
+    page-break-after: always;
+}
+
+.tableHead {
+    font-weight: bold;
+}

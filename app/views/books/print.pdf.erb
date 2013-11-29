@@ -1,36 +1,67 @@
+<% #Initial stuff... maybe we should move it to the controller
+   if @exportSettings.allChunks?
+     chunkSource = @book
+   else
+     chunkSource = @exportSettings
+   end
+%>
+
+<!-- Cover -->
 <div class="cover">
   <p class="title"><%= @book.title %></p>
-
   <p class="authors"><%= @book.users_list_real_names %></p>
-
   <br/><br/>
 
   <p><%= "#{@book.edition}. #{Book.human_attribute_name(:edition)}" %></p>
 
   <% if @book.published? %>
       <p><%= "#{I18n.t('views.book.export.published_on')} #{@book.published.to_s}" %></p>
-  <% end %>
+<% end %>
 </div>
 
-<% if @exportSettings.insertHead? %>
+
+<!-- Kopfzeile -->
+<% #TODO Auf jeder Seite einfügen:
+if @exportSettings.insertHead? %>
     <div ><%= @exportSettings.head %></div>
 <%end %>
+
+
+<!-- Zusammenfassung -->
+<% #TODO Wählen lassen, wo/ob Zusammenfassung angezeigt wird...%>
 <div class="chapter">
   <h1><%= Book.human_attribute_name(:abstract) %></h1>
 
   <p><%= raw @book.abstract %></p>
 </div>
 
-<% if @exportSettings.allChunks?
-     chunkSource = @book
-   else
-     chunkSource = @exportSettings
-   end
-%>
-    <% chunkSource.chunks.each do |chunk| %>
-        <div class="chapter">
-          <h1><%= chunk.title %></h1>
-          <%= raw chunk.content %>
-        </div>
-    <% end %>
-<%# end %>
+
+<!-- Inhaltsverzeichnis -->
+<% if @exportSettings.tableOfContent? %>
+    <p class="title">
+      Inhaltsverzeichnis
+    </p>
+    <table class="tableOfContent">
+      <tr class="tableHead">
+        <td>Abschnitt</td>
+        <td>Titel</td>
+        <td>Seite</td>
+      </tr>
+
+      <% chunkSource.chunks.each do |chunk| %>
+          <tr>
+          <td><%= chunk.section %></td>
+          <td><%= chunk.title %></td>
+          <td><%#TODO Seitenzahl  %>0</td>
+        </tr>
+      <% end %>
+    </table>
+<% end %>
+
+<!-- Text (Chunks) -->
+<% chunkSource.chunks.each do |chunk| %>
+    <div class="chapter">
+      <h1><%= chunk.title %></h1>
+      <%= raw chunk.content %>
+    </div>
+<% end %>
