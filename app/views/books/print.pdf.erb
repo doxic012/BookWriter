@@ -1,3 +1,4 @@
+
 <% #Initial stuff... maybe we should move it to the controller
    if @exportSettings.allChunks?
      chunkSource = @book
@@ -52,7 +53,7 @@ if @exportSettings.insertHead? %>
           <tr>
           <td><%= chunk.section %></td>
           <td><%= chunk.title %></td>
-          <td><%#TODO Seitenzahl  %>0</td>
+          <td>0</td>
         </tr>
       <% end %>
     </table>
@@ -61,7 +62,7 @@ if @exportSettings.insertHead? %>
 <!-- Text (Chunks) -->
 <% chunkSource.chunks.each do |chunk| %>
     <div class="chapter">
-      <h1><%= chunk.title %></h1>
+      <h1><%= chunk.section %> <%= chunk.title %></h1>
       <%= raw chunk.content %>
     </div>
 <% end %>

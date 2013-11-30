@@ -139,7 +139,7 @@
           <!-- END BODY -->
 
           <div class="modal-footer">
-            <%= f.submit 'PDF exportieren', :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
+            <%= f.submit I18n.t('views.book.export.pdf'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
             <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
                 #TODO Why ^ ?
 

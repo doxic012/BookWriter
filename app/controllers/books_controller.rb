@@ -55,9 +55,23 @@ class BooksController < ApplicationController
     @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
     @exportSettings = @authorship.pdf_export_setting
 
+    foot = @exportSettings.insertFoot ? @exportSettings.foot : ''
+    head = @exportSettings.insertHead ? @exportSettings.head : ''
+
     respond_to do |format|
       format.pdf do
-        render :pdf => @book.title, :layout => 'print'
+        render :pdf => @book.title,
+               :show_as_html => params[:debug].present?,
+               :footer => { :right => '[page]', :center => foot },
+               :header => { :center => head },
+               :margin => { #in cm
+                   :top => @exportSettings.marginTop * 10,
+                   :right => @exportSettings.marginRight * 10,
+                   :bottom => @exportSettings.marginBottom * 10,
+                   :left => @exportSettings.marginLeft * 10,
+               },
+               :toc => { :depth => 3 },
+               :layout => 'print'
       end
     end
 
