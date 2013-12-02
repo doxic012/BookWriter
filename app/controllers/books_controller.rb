@@ -61,7 +61,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.pdf do
         render :pdf => @book.title,
-               :show_as_html => params[:debug].present?,
+               :cover => "0.0.0.0:3000/cover.html?bla=test",
                :footer => { :right => '[page]', :center => foot },
                :header => { :center => head },
                :margin => { #in cm
