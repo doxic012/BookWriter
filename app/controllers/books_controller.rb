@@ -61,7 +61,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.pdf do
         render :pdf => @book.title,
-               :cover => "0.0.0.0:3000/cover.html?title=#{@book.title}&authors=#{@book.users_list_real_names}&edition=#{@book.edition}",
+               :cover => "0.0.0.0:3000/cover.html?title=#{@book.title}&authors=#{@book.users_list_real_names}&edition=#{@book.edition}&publish=#{@book.publishedGerFormat}",
                :footer => { :right => '[page]', :center => foot },
                :header => { :center => head },
                :l => { #in cm
@@ -70,7 +70,10 @@ class BooksController < ApplicationController
                        :bottom => @exportSettings.marginBottom * 10,
                        :left => @exportSettings.marginLeft * 10,
                },
-               :toc => { :depth => 6 },
+               :toc => {
+                        :depth => 6,
+                        :header_text => "Inhaltsverzeichnis"
+               },
                :layout => 'print'
       end
     end
