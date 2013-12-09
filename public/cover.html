@@ -1,7 +1,44 @@
-Toller HEAD
+<div class="cover">
+    <p class="title" id="title"></p>
+    <p class="authors" id ="authors"></p>
+    <br/><br/>
 
-                                                                                                                                                                                                                                                                         <script>
-var qs = (function(a) { if (a == "") return {}; var b = {}; for (var i = 0; i < a.length; ++i) { var p=a[i].split('='); if (p.length != 2) continue; b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " ")); } return b; })(window.location.search.substr(1).split('&'));
-                                                                                                                                                                                                                                                                             document.getElementById("asd").text(qs["bla"]);
-                                                                                                                                                                                                                                                                             </script>
-<div id="asd"></div>
+    <p id="edition"></p>
+
+</div>
+<script>
+    function get_url_param( name )
+    {
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( window.location.href );
+
+        if ( results == null )
+            return "";
+        else
+            return results[1];
+    }
+    var authors = get_url_param("authors");
+    authors = authors.replace(/[%20]/g, " ")
+    document.getElementById("title").innerHTML = get_url_param("title");
+    document.getElementById("authors").innerHTML =  authors;
+    document.getElementById("edition").innerHTML = get_url_param("edition")+'. Auflage';
+</script>
+<style type="text/css">
+    div.cover {
+        font-weight: bold;
+        text-align: center;
+        margin-top: 250px;
+        page-break-after: always;
+    }
+
+    p.title {
+        font-size: 42pt;
+    }
+
+    p.authors {
+        font-size: 20pt;
+    }
+</style>
