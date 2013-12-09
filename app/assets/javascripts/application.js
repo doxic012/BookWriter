@@ -16,3 +16,4 @@
 //= require jstree
 //= require ckeditor/init
 //= require_tree .
+//= require rails.validations

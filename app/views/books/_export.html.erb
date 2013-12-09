@@ -19,8 +19,7 @@
 
       <!-- MODAL BODY -->
 
-
-      <%= form_for(exportSettings) do |f| %>
+      <%= form_for exportSettings, :validate => true do |f| %>
           <div class="modal-body">
 
             <!-- +++++  Chnuks Selection: +++++ -->
@@ -69,7 +68,7 @@
               <div class="span4">
                   <div class="input-prepend input-append">
                     <span class="add-on  span5">Oben:</span>
-                    <%= f.text_field :marginTop, :id => "appendedPrependedInput", :class => "input-mini" %>
+                    <%= f.text_field :marginTop, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
                     <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                     <span class="add-on">cm</span>
                   </div>
@@ -78,7 +77,7 @@
               <div class="span4">
                   <div class="input-prepend input-append">
                     <span class="add-on span5">Unten:</span>
-                    <%= f.text_field :marginBottom, :id => "appendedPrependedInput", :class => "input-mini" %>
+                    <%= f.text_field :marginBottom, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
                     <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                     <span class="add-on">cm</span>
                   </div>
@@ -89,7 +88,7 @@
               <div class="span4">
                   <div class="input-prepend input-append">
                     <span class="add-on span5">Rechts:</span>
-                    <%= f.text_field :marginRight, :id => "appendedPrependedInput", :class => "input-mini" %>
+                    <%= f.text_field :marginRight, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
                     <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                     <span class="add-on">cm</span>
                   </div>
@@ -97,7 +96,7 @@
               <div class="span4">
                   <div class="input-prepend input-append">
                     <span class="add-on span5">Links:</span>
-                    <%= f.text_field :marginLeft, :id => "appendedPrependedInput", :class => "input-mini" %>
+                    <%= f.text_field :marginLeft, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
                     <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
                     <span class="add-on">cm</span>
                   </div>
@@ -115,7 +114,7 @@
                     <!--<input type="checkbox" value=""> Kopfzeile-->
                   </label>
                 </div>
-                <%= f.text_field :head, :id => "appendedPrependedInput", :class => "input-large" %>
+                <%= f.text_field :head, :id => "appendedPrependedInput", :class => "input-large", :validate => true %>
                 <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
@@ -128,7 +127,7 @@
                     <!--<input type="checkbox" value=""> Fußzeile-->
                   </label>
                 </div>
-                <%= f.text_field :foot, :id => "appendedPrependedInput", :class => "input-large" %>
+                <%= f.text_field :foot, :id => "appendedPrependedInput", :class => "input-large", :validate => true %>
                 <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>

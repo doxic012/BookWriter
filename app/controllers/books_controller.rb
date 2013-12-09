@@ -77,7 +77,6 @@ class BooksController < ApplicationController
                :layout => 'print'
       end
     end
-
   end
 
   # GET /books/new

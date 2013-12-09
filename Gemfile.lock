@@ -35,6 +35,7 @@ GEM
     ckeditor (4.0.6)
       mime-types
       orm_adapter
+    client_side_validations (3.2.6)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -149,6 +150,7 @@ PLATFORMS
 
 DEPENDENCIES
   ckeditor
+  client_side_validations
   coffee-rails (~> 3.2.1)
   devise
   devise-i18n

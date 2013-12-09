@@ -49,3 +49,4 @@ gem 'wkhtmltopdf-binary' # PDF-Generierung aus HTML-Daten
 gem 'wicked_pdf' # PDF-Export
 
 gem 'twitter-bootstrap-rails'
+gem 'client_side_validations'

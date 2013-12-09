@@ -17,7 +17,7 @@ class PdfExportSettingsController < ApplicationController
       saveSuccess = @pdf_export_setting.update_attribute(:chunks, Chunk.find_all_by_id(params[:pdf_export_setting][:chunks]))
 
       #save the rest:
-      saveSuccess = @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks)) || saveSuccess
+      saveSuccess = @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks))
 
       if saveSuccess
         format.html {
@@ -31,11 +31,10 @@ class PdfExportSettingsController < ApplicationController
           redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf export setting was successfully updated.'
         }
         format.json { head :no_content }
-      else
-        #error while saving
-        format.html { return }
-        format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
-      end
+      #else
+      #  #error while saving
+      #  #format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
+      #end
     end
   end
 
