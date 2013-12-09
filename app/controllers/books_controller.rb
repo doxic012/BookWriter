@@ -19,6 +19,8 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
+    @modal = params[:modal] != nil && params[:modal]
+
     #current_user.authorships.each do |authorship|
     #  puts "--------------"
     #  puts "--------------"
@@ -34,7 +36,7 @@ class BooksController < ApplicationController
 
     @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
 
-    @exportSettings = @authorship.pdf_export_setting
+    @exportSettings = @exportSettings || @authorship.pdf_export_setting
 
     if (@exportSettings == nil)
       @exportSettings = PdfExportSetting.create!
@@ -71,8 +73,8 @@ class BooksController < ApplicationController
                        :left => @exportSettings.marginLeft * 10,
                },
                :toc => {
-                        :depth => 6,
-                        :header_text => "Inhaltsverzeichnis"
+                   :depth => 6,
+                   :header_text => "Inhaltsverzeichnis"
                },
                :layout => 'print'
       end

@@ -13,24 +13,25 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
         <h4 class="modal-title" id="myModalLabel">Als PDF Exportieren: <%= book.title %></h4>
       </div>
 
-      <!-- MODAL BODY -->
 
-      <%= form_for exportSettings, :validate => true do |f| %>
+      <%= simple_form_for @exportSettings, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
+
+          <!-- MODAL BODY -->
           <div class="modal-body">
 
-            <!-- +++++  Chnuks Selection: +++++ -->
+            <!-- +++++  Chunks Selection: +++++ -->
             <label class="checkbox">
               <%= f.check_box :allChunks, :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
             </label>
 
             <% chunkSelectHtmlAttributes = { :class => 'form-control',    #html options
-                 :multiple => true,
-                 :id => :chunks_select
-               }
+                                             :multiple => true,
+                                             :id => :chunks_select
+            }
 
                if @exportSettings.allChunks?
                  chunkSelectHtmlAttributes.merge!(:disabled => '')
@@ -40,21 +41,20 @@
             <%= f.select :chunks,
                          options_for_select(                                          #All _shown_ option tags:
                                  book.chunks.map {|c| [c.section + " - " + c.title,   #->text
-                                                  c.id]},                             #->value
+                                                       c.id]},                             #->value
                                  @exportSettings.chunks.collect {|c| c.id}            #All _selected_ options
                          ),
                          {:include_blank => false},                            #form-helper options
                          chunkSelectHtmlAttributes
-            #end f.select
+                #end f.select
             %>
 
 
             <!--<select id="chunk-select" multiple class="form-control" >-->
-              <!--<%# book.chunks.each do |chunk| %>-->
-                  <!--<option><%#= chunk.section %> - <%#= chunk.title %></option>-->
-              <!--<%# end %>-->
+            <!--<%# book.chunks.each do |chunk| %>-->
+            <!--<option><%#= chunk.section %> - <%#= chunk.title %></option>-->
+            <!--<%# end %>-->
             <!--</select>-->
-
 
             <!-- +++++ Table of Content & Margin: +++++ -->
             <label class="checkbox">
@@ -66,40 +66,40 @@
 
             <div class="row-fluid">
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on  span5">Oben:</span>
-                    <%= f.text_field :marginTop, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on  span5">Oben:</span>
+                  <%= f.text_field :marginTop, :class => "input-mini", :validate => true %>
+                  <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
+                  <span class="add-on">cm</span>
+                </div>
               </div>
 
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on span5">Unten:</span>
-                    <%= f.text_field :marginBottom, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on span5">Unten:</span>
+                  <%= f.text_field :marginBottom, :class => "input-mini", :validate => true %>
+                  <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
+                  <span class="add-on">cm</span>
+                </div>
               </div>
             </div>
 
             <div class="row-fluid">
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on span5">Rechts:</span>
-                    <%= f.text_field :marginRight, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
-               </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on span5">Rechts:</span>
+                  <%= f.text_field :marginRight, :class => "input-mini", :validate => true %>
+                  <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
+                  <span class="add-on">cm</span>
+                </div>
+              </div>
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on span5">Links:</span>
-                    <%= f.text_field :marginLeft, :id => "appendedPrependedInput", :class => "input-mini", :validate => true %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on span5">Links:</span>
+                  <%= f.text_field :marginLeft, :class => "input-mini", :validate => true %>
+                  <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
+                  <span class="add-on">cm</span>
+                </div>
               </div>
             </div>
 
@@ -114,7 +114,7 @@
                     <!--<input type="checkbox" value=""> Kopfzeile-->
                   </label>
                 </div>
-                <%= f.text_field :head, :id => "appendedPrependedInput", :class => "input-large", :validate => true %>
+                <%= f.text_field :head, :class => "input-large", :validate => true %>
                 <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
@@ -127,7 +127,7 @@
                     <!--<input type="checkbox" value=""> Fußzeile-->
                   </label>
                 </div>
-                <%= f.text_field :foot, :id => "appendedPrependedInput", :class => "input-large", :validate => true %>
+                <%= f.text_field :foot, :class => "input-large", :validate => true %>
                 <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
@@ -137,13 +137,12 @@
 
           <!-- END BODY -->
 
-          <div class="modal-footer">
+          <div class="modal-footer form-actions">
             <%= f.submit I18n.t('views.book.export.pdf'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
             <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
                 #TODO Why ^ ?
 
-                f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"
-            %>
+                f.submit I18n.t('views.close'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;", :'data-dismiss' => 'modal', method: :get%>
           </div>
       <% end %>
 
@@ -153,3 +152,14 @@
   </div>
   <!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="text/javascript">
+    if (<%= @modal %> ) {
+        $(document).ready(function() {
+            // Modal wird sofort ohne fading effekt geöffnet, wenn modalState == true in Parametern übergeben
+            $('#pdfExport').removeClass("fade")
+            $('#pdfExport').modal("show");
+            $('#pdfExport, .modal-backdrop').addClass("fade");
+        });
+    }
+</script>

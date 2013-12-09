@@ -31,10 +31,12 @@ class PdfExportSettingsController < ApplicationController
           redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf export setting was successfully updated.'
         }
         format.json { head :no_content }
-      #else
-      #  #error while saving
-      #  #format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
-      #end
+      else
+        #error while saving
+        # status des Modals auf true setzen, für direktes öffnen
+        format.html { redirect_to :controller => "books", :action => "show", :id => params[:book_id], :modal => true }
+        format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
+      end
     end
   end
 

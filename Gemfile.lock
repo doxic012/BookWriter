@@ -28,7 +28,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    arel (3.0.2)
+    arel (3.0.3)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     builder (3.0.4)
@@ -36,6 +36,9 @@ GEM
       mime-types
       orm_adapter
     client_side_validations (3.2.6)
+    client_side_validations-simple_form (2.1.0)
+      client_side_validations (~> 3.2.5)
+      simple_form (~> 2.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -47,13 +50,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    devise (3.2.0)
+    devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-i18n (0.10.0)
+    devise-i18n (0.10.2)
     devise-i18n-views (0.2.8)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -68,9 +71,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.25)
+    mime-types (1.25.1)
     multi_json (1.8.2)
-    orm_adapter (0.4.0)
+    orm_adapter (0.5.0)
     paper_trail (2.7.2)
       activerecord (~> 3.0)
       railties (~> 3.0)
@@ -114,6 +117,9 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    simple_form (2.1.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -136,12 +142,12 @@ GEM
       rails (>= 3.1)
       railties (>= 3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    wicked_pdf (0.9.7)
+    wicked_pdf (0.9.8)
       rails
     wkhtmltopdf-binary (0.9.9.1)
 
@@ -151,6 +157,7 @@ PLATFORMS
 DEPENDENCIES
   ckeditor
   client_side_validations
+  client_side_validations-simple_form
   coffee-rails (~> 3.2.1)
   devise
   devise-i18n
@@ -161,6 +168,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails-i18n
   sass-rails (~> 3.2.3)
+  simple_form
   sqlite3
   therubyracer
   twitter-bootstrap-rails
