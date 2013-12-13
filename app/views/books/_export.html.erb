@@ -25,7 +25,7 @@
 
             <!-- +++++  Chunks Selection: +++++ -->
             <label class="checkbox">
-              <%= f.check_box :allChunks, :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
+              <%= f.check_box :allChunks, :onload => "document.getElementById('#{:chunks_select}').disabled = this.checked;", :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
             </label>
 
             <% chunkSelectHtmlAttributes = { :class => 'form-control',    #html options
