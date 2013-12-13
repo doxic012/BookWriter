@@ -18,7 +18,7 @@
       </div>
 
 
-      <%= simple_form_for @exportSettings, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
+      <%= form_for @exportSettings do |f| %>
 
           <!-- MODAL BODY -->
           <div class="modal-body">
@@ -137,12 +137,12 @@
 
           <!-- END BODY -->
 
-          <div class="modal-footer form-actions">
+          <div class="modal-footer">
             <%= f.submit I18n.t('views.book.export.pdf'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
             <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
                 #TODO Why ^ ?
 
-                f.submit I18n.t('views.close'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;", :'data-dismiss' => 'modal', method: :get%>
+                f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;", :'data-dismiss' => 'modal', method: :get%>
           </div>
       <% end %>
 

@@ -35,8 +35,7 @@ class BooksController < ApplicationController
     #end
 
     @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
-
-    @exportSettings = @exportSettings || @authorship.pdf_export_setting
+    @exportSettings = @authorship.pdf_export_setting
 
     if (@exportSettings == nil)
       @exportSettings = PdfExportSetting.create!
