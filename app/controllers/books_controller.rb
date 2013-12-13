@@ -65,7 +65,7 @@ class BooksController < ApplicationController
                :cover => "0.0.0.0:3000/cover.html?title=#{@book.title}&authors=#{@book.users_list_real_names}&edition=#{@book.edition}&publish=#{@book.publishedGerFormat}",
                :footer => { :right => '[page]', :center => foot },
                :header => { :center => head },
-               :l => { #in cm
+               :margin => { #in cm
                        :top => @exportSettings.marginTop * 10,
                        :right => @exportSettings.marginRight * 10,
                        :bottom => @exportSettings.marginBottom * 10,
