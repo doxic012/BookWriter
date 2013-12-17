@@ -24,42 +24,56 @@
           <div class="modal-body">
 
             <!-- +++++  Chnuks Selection: +++++ -->
+            <h4>Abschnitte:</h4>
+
             <label class="checkbox">
               <%= f.check_box :allChunks, :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
             </label>
 
-            <% chunkSelectHtmlAttributes = { :class => 'form-control',    #html options
-                 :multiple => true,
-                 :id => :chunks_select
-               }
+            <%  chunkSelectHtmlAttributes = { :class => 'form-control',    #html options for selection
+                                             :multiple => true,
+                                             :id => :chunks_select,
+                                             :title => "Strg halten beim klicken, um einzelne Punkte an- oder abzuwählen."
+                }
 
-               if @exportSettings.allChunks?
-                 chunkSelectHtmlAttributes.merge!(:disabled => '')
-               end
+                if @exportSettings.allChunks?
+                    chunkSelectHtmlAttributes.merge!(:disabled => '')
+                end
             %>
 
             <%= f.select :chunks,
                          options_for_select(                                          #All _shown_ option tags:
                                  book.chunks.map {|c| [c.section + " - " + c.title,   #->text
-                                                  c.id]},                             #->value
+                                                       c.id]},                             #->value
                                  @exportSettings.chunks.collect {|c| c.id}            #All _selected_ options
                          ),
                          {:include_blank => false},                            #form-helper options
                          chunkSelectHtmlAttributes
-            #end f.select
+                #end f.select
             %>
+            <div class="button">
+              <button class="btn"
+                      onclick="clearSelected();"
+                      type="button" >Alle abwählen</button>
+            </div>
 
+            <script>
+                //Clear selected Chunks
+                function clearSelected(){
+                    var elements = document.getElementById("chunks_select").options;
 
-            <!--<select id="chunk-select" multiple class="form-control" >-->
-              <!--<%# book.chunks.each do |chunk| %>-->
-                  <!--<option><%#= chunk.section %> - <%#= chunk.title %></option>-->
-              <!--<%# end %>-->
-            <!--</select>-->
+                    for(var i = 0; i < elements.length; i++){
+                        if(elements[i].selected)
+                            elements[i].selected = false;
+                    }
+                }
 
+            </script>
 
             <!-- +++++ Table of Content & Margin: +++++ -->
+            <h4>Inhaltsverzeichnis:</h4>
+
             <label class="checkbox">
-              <!--<input type="checkbox" value=""> Inhaltsverzeichnis einfügen-->
               <%= f.check_box :tableOfContent%>  Inhaltsverzeichnis einfügen
             </label>
 
@@ -67,56 +81,51 @@
 
             <div class="row-fluid">
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on  span5">Oben:</span>
-                    <%= f.text_field :marginTop, :id => "appendedPrependedInput", :class => "input-mini" %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on  span5">Oben:</span>
+                  <%= f.text_field :marginTop, :id => "appendedPrependedInput", :class => "input-mini" %>
+                  <span class="add-on">cm</span>
+                </div>
               </div>
 
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on span5">Unten:</span>
-                    <%= f.text_field :marginBottom, :id => "appendedPrependedInput", :class => "input-mini" %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on span5">Unten:</span>
+                  <%= f.text_field :marginBottom, :id => "appendedPrependedInput", :class => "input-mini" %>
+                  <span class="add-on">cm</span>
+                </div>
               </div>
             </div>
 
             <div class="row-fluid">
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on span5">Rechts:</span>
-                    <%= f.text_field :marginRight, :id => "appendedPrependedInput", :class => "input-mini" %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
-               </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on span5">Rechts:</span>
+                  <%= f.text_field :marginRight, :id => "appendedPrependedInput", :class => "input-mini" %>
+                  <span class="add-on">cm</span>
+                </div>
+              </div>
               <div class="span4">
-                  <div class="input-prepend input-append">
-                    <span class="add-on span5">Links:</span>
-                    <%= f.text_field :marginLeft, :id => "appendedPrependedInput", :class => "input-mini" %>
-                    <!--<input class="input-mini" id="appendedPrependedInput" type="text">-->
-                    <span class="add-on">cm</span>
-                  </div>
+                <div class="input-prepend input-append">
+                  <span class="add-on span5">Links:</span>
+                  <%= f.text_field :marginLeft, :id => "appendedPrependedInput", :class => "input-mini" %>
+                  <span class="add-on">cm</span>
+                </div>
               </div>
             </div>
 
 
             <!-- +++++ Header, Footer: +++++ -->
+            <h4>Header / Footer:</h4>
             <div class="row-fluid">
 
               <div class="input-prepend">
                 <div class="add-on">
                   <label class="checkbox">
                     <%= f.check_box :insertHead %> Kopfzeile
-                    <!--<input type="checkbox" value=""> Kopfzeile-->
                   </label>
                 </div>
                 <%= f.text_field :head, :id => "appendedPrependedInput", :class => "input-large" %>
-                <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
             <div class="row-fluid">
@@ -125,11 +134,9 @@
                 <div class="add-on">
                   <label class="checkbox">
                     <%= f.check_box :insertFoot %> Fußzeile
-                    <!--<input type="checkbox" value=""> Fußzeile-->
                   </label>
                 </div>
                 <%= f.text_field :foot, :id => "appendedPrependedInput", :class => "input-large" %>
-                <!--<input class="input-large" id="appendedPrependedInput" type="text">-->
               </div>
             </div>
           </div>
@@ -139,12 +146,8 @@
           <!-- END BODY -->
 
           <div class="modal-footer">
-            <%= f.submit I18n.t('views.book.export.pdf'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
-            <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
-                #TODO Why ^ ?
-
-                f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"
-            %>
+            <%= f.submit 'PDF exportieren', :class => 'btn'%>
+            <%= f.submit I18n.t('views.close_save'), :class => 'btn'%>
           </div>
       <% end %>
 
