@@ -17,7 +17,7 @@ class PdfExportSettingsController < ApplicationController
       saveSuccess = @pdf_export_setting.update_attribute(:chunks, Chunk.find_all_by_id(params[:pdf_export_setting][:chunks]))
 
       #save the rest:
-      saveSuccess = @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks)) || saveSuccess
+      saveSuccess = @pdf_export_setting.update_attributes(params[:pdf_export_setting].except(:chunks))
 
       if saveSuccess
         format.html {
@@ -33,7 +33,8 @@ class PdfExportSettingsController < ApplicationController
         format.json { head :no_content }
       else
         #error while saving
-        format.html { return }
+        # status des Modals auf true setzen, für direktes öffnen
+        format.html { redirect_to :controller => "books", :action => "show", :id => params[:book_id], :modal => true }
         format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
       end
     end

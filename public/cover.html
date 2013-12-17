@@ -4,6 +4,7 @@
     <br/><br/>
 
     <p id="edition"></p>
+    <p id="published"></p>
 
 </div>
 <script>
@@ -18,13 +19,17 @@
         if ( results == null )
             return "";
         else
-            return results[1];
+            return results[1].replace(new RegExp("%20","g"), " ");
     }
-    var authors = get_url_param("authors");
-    authors = authors.replace(/[%20]/g, " ")
+
     document.getElementById("title").innerHTML = get_url_param("title");
-    document.getElementById("authors").innerHTML =  authors;
+    document.getElementById("authors").innerHTML =  get_url_param("authors");
     document.getElementById("edition").innerHTML = get_url_param("edition")+'. Auflage';
+    var publish = get_url_param("publish");
+    if(publish !== ""){
+        document.getElementById("published").innerHTML = 'Ver&ouml;fentlicht am: '+publish;
+    }
+
 </script>
 <style type="text/css">
     div.cover {

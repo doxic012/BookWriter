@@ -20,6 +20,10 @@ class Book < ActiveRecord::Base
     !published.nil?
   end
 
+  def publishedGerFormat
+    published? ? (I18n.l published) : "";
+  end
+
   def has_chunks?
     !chunks.empty?
   end
