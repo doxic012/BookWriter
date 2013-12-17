@@ -24,6 +24,7 @@
           <div class="modal-body">
 
             <!-- +++++  Chnuks Selection: +++++ -->
+            <h4>Abschnitte:</h4>
             <label class="checkbox">
               <%= f.check_box :allChunks, :onclick => "document.getElementById('#{:chunks_select}').disabled = this.checked;"%> Alle auswählen
             </label>
@@ -49,7 +50,23 @@
             #end f.select
             %>
 
+            <div class="button">
+            <button class="btn"
+                    onclick="clearSelected();"
+                    type="button" >Alle abwählen</button>
+            </div>
 
+            <script>
+                function clearSelected(){
+                    var elements = document.getElementById("chunks_select").options;
+
+                    for(var i = 0; i < elements.length; i++){
+                        if(elements[i].selected)
+                            elements[i].selected = false;
+                    }
+                }
+
+            </script>
             <!--<select id="chunk-select" multiple class="form-control" >-->
               <!--<%# book.chunks.each do |chunk| %>-->
                   <!--<option><%#= chunk.section %> - <%#= chunk.title %></option>-->
@@ -58,12 +75,13 @@
 
 
             <!-- +++++ Table of Content & Margin: +++++ -->
+            <h4>Inhaltsverzeichnis:</h4>
             <label class="checkbox">
               <!--<input type="checkbox" value=""> Inhaltsverzeichnis einfügen-->
               <%= f.check_box :tableOfContent%>  Inhaltsverzeichnis einfügen
             </label>
 
-            <h4>Seitenränder</h4>
+            <h4>Seitenränder:</h4>
 
             <div class="row-fluid">
               <div class="span4">
@@ -106,6 +124,7 @@
 
 
             <!-- +++++ Header, Footer: +++++ -->
+            <h4>Header / Footer:</h4>
             <div class="row-fluid">
 
               <div class="input-prepend">
@@ -140,10 +159,7 @@
 
           <div class="modal-footer">
             <%= f.submit I18n.t('views.book.export.pdf'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
-            <%= #does not work: f.submit 'asdf', :class => 'btn', :'data-dismiss' => 'modal'
-                #TODO Why ^ ?
-
-                f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"
+            <%= f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"
             %>
           </div>
       <% end %>
