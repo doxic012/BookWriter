@@ -48,21 +48,28 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        render :pdf => @book.title,
-               :cover => "0.0.0.0:3000/cover.html?title=#{@book.title}&authors=#{@book.users_list_real_names}&edition=#{@book.edition}&publish=#{@book.publishedGerFormat}",
-               :footer => { :right => '[page]', :center => foot },
-               :header => { :center => head },
-               :margin => { #in cm
-                       :top => @exportSettings.marginTop * 10,
-                       :right => @exportSettings.marginRight * 10,
-                       :bottom => @exportSettings.marginBottom * 10,
-                       :left => @exportSettings.marginLeft * 10,
-               },
-               :toc => {
-                   :depth => 6,
-                   :header_text => "Inhaltsverzeichnis"
-               },
-               :layout => 'print'
+        pdfRenderOptions = {
+            :pdf => @book.title,
+            :cover => "0.0.0.0:3000/cover.html?title=#{@book.title}&authors=#{@book.users_list_real_names}&edition=#{@book.edition}&publish=#{@book.publishedGerFormat}",
+            :footer => { :right => '[page]', :center => foot },
+            :header => { :center => head },
+            :margin => { #in cm
+                         :top => @exportSettings.marginTop * 10,
+                         :right => @exportSettings.marginRight * 10,
+                         :bottom => @exportSettings.marginBottom * 10,
+                         :left => @exportSettings.marginLeft * 10,
+            },
+            :layout => 'print'
+        }
+
+        if @exportSettings.tableOfContent
+          pdfRenderOptions.merge!(:toc => {
+              :depth => 6,
+              :header_text => "Inhaltsverzeichnis"
+          })
+        end
+
+        render pdfRenderOptions
       end
     end
   end

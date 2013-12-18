@@ -2,7 +2,6 @@ class PdfExportSettingsController < ApplicationController
   # PUT /pdf_export_settings/1
   # PUT /pdf_export_settings/1.json
   def update
-
     @pdf_export_setting = PdfExportSetting.find(params[:id])
 
     currentBook = Book.find(params[:book_id])
