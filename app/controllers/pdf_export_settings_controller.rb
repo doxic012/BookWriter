@@ -22,12 +22,12 @@ class PdfExportSettingsController < ApplicationController
         format.html {
           #redirect to book , if commit-button was "close & save"
           if (params[:commit] == I18n.t('views.close_save'))
-            redirect_to currentBook
+            redirect_to currentBook, notice: 'Pdf-Export Settings erfolgreich aktualisiert'
 
             return
           end
 
-          redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf-Export Settings erfolgreich aktualisiert'
+          redirect_to print_book_path(currentBook, :format => 'pdf')
         }
         format.json { head :no_content }
       else
