@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class PdfExportSettingsControllerTest < ActionController::TestCase
-  setup do
+=begin
+
+   setup do
     @pdf_export_setting = pdf_export_settings(:one)
   end
 
@@ -46,4 +48,5 @@ class PdfExportSettingsControllerTest < ActionController::TestCase
 
     assert_redirected_to pdf_export_settings_path
   end
+=end
 end

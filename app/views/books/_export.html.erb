@@ -19,7 +19,6 @@
 
       <!-- MODAL BODY -->
 
-
       <%= form_for(exportSettings) do |f| %>
           <div class="modal-body">
 
@@ -146,8 +145,8 @@
           <!-- END BODY -->
 
           <div class="modal-footer">
-            <%= f.submit 'PDF exportieren', :class => 'btn'%>
-            <%= f.submit I18n.t('views.close_save'), :class => 'btn'%>
+            <%= f.submit 'PDF exportieren', :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
+            <%= f.submit I18n.t('views.close_save'), :class => 'btn', :onclick => "document.getElementById('#{:chunks_select}').disabled = false;"%>
           </div>
       <% end %>
 

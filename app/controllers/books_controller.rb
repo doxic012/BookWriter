@@ -21,19 +21,6 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @modal = params[:modal] != nil && params[:modal]
 
-    #current_user.authorships.each do |authorship|
-    #  puts "--------------"
-    #  puts "--------------"
-    #  puts "Buch#" + authorship.book.id.to_s
-    #  puts "--------------"
-    #  puts "--------------"
-    #
-    #  if (authorship.book.id == @book.id)
-    #    @exportSettings = authorship.pdf_export_setting
-    #    #break
-    #  end
-    #end
-
     @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
     @exportSettings = @authorship.pdf_export_setting
 
