@@ -19,7 +19,6 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
-    @modal = params[:modal] != nil && params[:modal]
 
     @authorship = Authorship.find_by_book_id_and_user_id(@book.id, current_user.id)
     @exportSettings = @authorship.pdf_export_setting

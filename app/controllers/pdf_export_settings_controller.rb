@@ -20,21 +20,20 @@ class PdfExportSettingsController < ApplicationController
 
       if saveSuccess
         format.html {
-          #redirect to book (closed modal), if commit-button was "close & save"
+          #redirect to book , if commit-button was "close & save"
           if (params[:commit] == I18n.t('views.close_save'))
             redirect_to currentBook
 
             return
           end
 
-          redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf export setting was successfully updated.'
+          redirect_to print_book_path(currentBook, :format => 'pdf'), notice: 'Pdf-Export Settings erfolgreich aktualisiert'
         }
         format.json { head :no_content }
       else
         #error while saving
-        # status des Modals auf true setzen, für direktes öffnen
-        format.html { redirect_to :controller => "books", :action => "show", :id => params[:book_id], :modal => true }
-        format.json { render json: @pdf_export_setting.errors, status: :unprocessable_entity }
+        format.html { redirect_to currentBook, notice: 'Pdf-Export Settings nicht gespeichert: Fehlerhafte Angabe' }
+        format.json { render json: currentBook.errors, status: :unprocessable_entity}
       end
     end
   end
